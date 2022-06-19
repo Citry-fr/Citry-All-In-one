@@ -1,10 +1,12 @@
 import http from 'http';
+import app from './app.js';
 
 const port = process.env.PORT || 3000;
-const server = http.createServer((req, res) => {
-    res.end('Hello World');
-    });
+
+app.set('port', port);
+
+const server = http.createServer(app);
 
 server.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}/`);
+    console.log(`Server running on port ${port}`);
 });
