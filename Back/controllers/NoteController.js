@@ -34,6 +34,16 @@ const NoteController = {
         Note.findById(req.params.id)
             .then(note => res.send(note))
             .catch(err => res.status(400).send(err));
+    },
+    deleteAllNotes: (req, res) => {
+        Note.deleteMany()
+            .then(() => res.send("All notes deleted"))
+            .catch(err => res.status(400).send(err));
+    },
+    getPriorityNotes: (req, res) => {
+        Note.find({ priority: req.params.priority })
+            .then(notes => res.send(notes))
+            .catch(err => res.status(400).send(err));
     }
 };
 
