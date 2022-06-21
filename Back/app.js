@@ -7,12 +7,13 @@ import noteRouter from './routes/NoteRoutes.js';
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/AIO', {
+mongoose
+  .connect('mongodb://localhost:27017/AIO', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-})
-    .then(() => console.log('MongoDB Connected'))
-    .catch(err => console.log(err));
+  })
+  .then(() => console.log('MongoDB Connected'))
+  .catch((err) => console.log(err));
 
 app.use(helmet());
 app.use(bodyParser.json());
