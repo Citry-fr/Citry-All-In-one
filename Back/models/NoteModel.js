@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { URGENT, IMPORTANT, NORMAL, SECONDARY } from '../constant.js';
+import { URGENT, IMPORTANT, NORMAL } from '../constant.js';
 
 const NoteSchema = new mongoose.Schema({
   title: {
@@ -13,7 +13,7 @@ const NoteSchema = new mongoose.Schema({
   priority: {
     type: String,
     required: true,
-    enum: [URGENT, IMPORTANT, NORMAL, SECONDARY],
+    enum: [URGENT, IMPORTANT, NORMAL],
     default: NORMAL,
   },
 });
