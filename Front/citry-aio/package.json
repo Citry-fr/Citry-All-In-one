@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "nes.css": "^2.3.0",
     "pinia": "^2.0.14",
+    "sass": "^1.53.0",
     "vue": "^3.2.37",
     "vue-router": "^4.0.16"
   },
@@ -27,6 +29,7 @@
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-vue": "^9.0.0",
     "jsdom": "^20.0.0",
+    "pixel-borders": "^1.1.4",
     "prettier": "^2.5.1",
     "start-server-and-test": "^1.14.0",
     "vite": "^2.9.12",

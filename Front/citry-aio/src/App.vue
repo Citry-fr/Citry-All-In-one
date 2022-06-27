@@ -1,125 +1,110 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router';
-import HelloWorld from '@/components/HelloWorld.vue';
-</script>
-
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="@/assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <header class="header">
+    <p class="header__p">Soon le bg</p>
+    <div class="header__nav">
+      <router-link class="header__nav__link first" to="/notes"
+        >Notes
+        <div class="header__nav__border"></div
+      ></router-link>
+      <router-link class="header__nav__link second" to="/counters"
+        >Counter
+        <div class="header__nav__border"></div
+      ></router-link>
+      <router-link class="header__nav__link third" to="/timers"
+        >Timer
+        <div class="header__nav__border"></div
+      ></router-link>
     </div>
+    <router-view />
   </header>
-
-  <RouterView />
 </template>
 
-<style>
-@import '@/assets/base.css';
+<script>
+export default {
+  setup() {
+    return {};
+  },
+};
+</script>
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+<style lang="scss">
+@import '../node_modules/nes.css/css/nes.css';
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import 'node_modules/pixel-borders/src/styles/pixel-borders.scss';
 
-  font-weight: normal;
+* {
+  font-family: 'Press Start 2P', cursive;
 }
 
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+body {
+  background-color: grey;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+.header {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 15px;
+  left: 50%;
+  margin-left: -45%;
+  padding: 5px 0 0 0;
+  background-color: white;
+  @include pixel-borders($corner-size: 2);
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-bottom: 0;
+  &__p {
+    margin: 10px 0;
   }
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  body {
+  &__nav {
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+    border-bottom: 4px solid black;
     display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
-
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
+    &__link {
+      @include pixel-borders($corner-size: 2);
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+      border-bottom: 0;
+      border-right: 0;
+      background-color: white;
+      position: relative;
+      bottom: -3px;
+      width: 150px;
+      display: flex;
+      justify-content: center;
+      padding: 5px 0px;
+    }
+    &__link + .second {
+      left: -4px;
+    }
+    &__link + .third {
+      left: -8px;
+    }
+    &__border {
+      position: absolute;
+      top: 0;
+      right: 0px;
+      width: 100%;
+      height: 100%;
+      border-right: 4px solid black;
+      border-bottom: 4px solid black;
+    }
+    & a.router-link-active {
+      padding: 10px 0px;
+      bottom: 2px;
+      .header__nav__border {
+        border-bottom: 0;
+      }
+    }
   }
 }
 </style>
