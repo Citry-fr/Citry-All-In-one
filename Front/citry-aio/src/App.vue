@@ -19,8 +19,27 @@
         <div class="header__nav__border"></div
       ></router-link>
     </div>
-    <router-view />
   </header>
+  <router-view />
+  <footer class="footer">
+    <p class="footer__name">Citry All In One</p>
+    <div class="footer__icon">
+      <a
+        href="https://github.com/Citry-fr"
+        class="footer__icon__link"
+        target="_blank"
+        title="GitHub"
+        ><i class="nes-icon github is-medium footer__icon__link__github"></i
+      ></a>
+      <a
+        href="https://www.linkedin.com/in/tristanfaudarole/"
+        class="footer__icon__link"
+        target="_blank"
+        title="LinkedIn"
+        ><i class="nes-icon linkedin is-medium footer__icon__link__linkedin"></i
+      ></a>
+    </div>
+  </footer>
 </template>
 
 <script>
@@ -47,7 +66,6 @@ body {
 }
 
 .header {
-  position: absolute;
   display: flex;
   flex-direction: column;
   width: 90%;
@@ -55,11 +73,9 @@ body {
   align-items: center;
   margin: auto;
   margin-top: 15px;
-  left: 50%;
-  margin-left: -45%;
   padding: 5px 0 0 0;
   background-color: $bg-light;
-  @include pixel-borders($corner-size: 2, $border-color: $border-color);
+
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
   border-bottom: 0;
@@ -126,5 +142,34 @@ body {
 }
 .home {
   width: 50px;
+}
+
+.footer {
+  margin: auto;
+  width: 90%;
+  height: 100px;
+  background-color: $bg-light;
+  margin-bottom: 15px;
+  @include pixel-borders($corner-size: 2, $border-color: $border-color);
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-top: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  &__name {
+    margin: 0;
+  }
+  &__icon {
+    display: flex;
+    gap: 10px;
+    &__link {
+      height: 56px;
+      @include pixel-borders($corner-size: 2, $border-color: $border-color);
+      &[title] {
+        color: red;
+      }
+    }
+  }
 }
 </style>
