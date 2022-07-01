@@ -1,6 +1,5 @@
 <template>
   <header class="header">
-    <p class="header__p">Soon le bg</p>
     <div class="header__nav">
       <router-link class="header__nav__link home" to="/"
         >H
@@ -19,8 +18,11 @@
         <div class="header__nav__border"></div
       ></router-link>
     </div>
+    <div class="header__logo">
+      <h1 class="header__logo__title">Citry AIO</h1>
+    </div>
   </header>
-  <router-view />
+  <router-view class="content" />
   <footer class="footer">
     <p class="footer__name">Citry All In One</p>
     <div class="footer__icon">
@@ -54,7 +56,6 @@ export default {
 @import '../node_modules/nes.css/css/nes.css';
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import 'node_modules/pixel-borders/src/styles/pixel-borders.scss';
-@import './scss/variable.scss';
 
 * {
   font-family: 'Press Start 2P', cursive;
@@ -67,21 +68,31 @@ body {
 
 .header {
   display: flex;
-  flex-direction: column;
   width: 90%;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   margin: auto;
   margin-top: 15px;
   padding: 5px 0 0 0;
-  background-color: $bg-light;
+  //background-color: $bg-light;
 
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
   border-bottom: 0;
-  &__p {
-    margin: 10px 0;
-    color: $text-primary;
+  &__logo {
+    width: 300px;
+    height: 100px;
+    background-color: $bg-light;
+    @include pixel-borders($corner-size: 2, $border-color: $border-color);
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &__title {
+      font-size: 1.5rem;
+    }
   }
   &__nav {
     margin-top: 10px;
@@ -144,6 +155,17 @@ body {
   width: 50px;
 }
 
+.content {
+  display: flex;
+  margin: auto;
+  width: 90%;
+  min-height: 75vh;
+  border-bottom: 4px solid $border-color;
+  border-left: 4px solid $border-color;
+  border-right: 4px solid $border-color;
+  background-color: $bg-light;
+}
+
 .footer {
   margin: auto;
   width: 90%;
@@ -166,9 +188,6 @@ body {
     &__link {
       height: 56px;
       @include pixel-borders($corner-size: 2, $border-color: $border-color);
-      &[title] {
-        color: red;
-      }
     }
   }
 }

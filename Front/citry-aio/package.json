@@ -14,8 +14,10 @@
   "dependencies": {
     "axios": "^0.27.2",
     "nes.css": "^2.3.0",
+    "node-sass": "^7.0.1",
     "pinia": "^2.0.14",
     "sass": "^1.53.0",
+    "sass-loader": "^13.0.2",
     "vue": "^3.2.37",
     "vue-router": "^4.0.16"
   },
