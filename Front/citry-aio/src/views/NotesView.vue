@@ -3,7 +3,9 @@
     <h2 class="note__title">Note</h2>
     <p>Ici vous pouvez créer des notes / mémos.</p>
     <TestModal />
-    <button @click="readNote">test</button>
+    <div v-for="item in allNotes" :key="item.id">
+      {{ item.title }}
+    </div>
   </div>
 </template>
 
@@ -12,16 +14,26 @@ import { useNoteStore } from '@/stores/note.js';
 import TestModal from '../components/modals/TestModal.vue';
 export default {
   setup() {
-    const note = useNoteStore();
-    return { note };
+    const notesStore = useNoteStore();
+    return { notesStore };
+  },
+  data() {
+    return {
+      allNotes: [],
+    };
   },
   components: {
     TestModal,
   },
   methods: {
-    readNote() {
-      console.log(this.note.note);
+    async getNotes() {
+      await this.notesStore.getAllNotes();
+      this.allNotes = this.notesStore.notes;
+      console.log(this.allNotes);
     },
+  },
+  beforeMount() {
+    this.getNotes();
   },
 };
 </script>

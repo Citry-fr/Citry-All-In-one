@@ -30,7 +30,7 @@
               type="radio"
               class="nes-radio is-dark"
               name="answer-dark"
-              value="NORMAL"
+              value="Normal"
               v-model="noteData.priority"
               checked
             />
@@ -39,7 +39,7 @@
 
           <label class="modal__content__radio__choice">
             <input
-              value="URGENT"
+              value="Urgent"
               type="radio"
               class="nes-radio is-dark"
               name="answer-dark"
@@ -50,7 +50,7 @@
 
           <label class="modal__content__radio__choice">
             <input
-              value="IMPORTANT"
+              value="Important"
               type="radio"
               class="nes-radio is-dark"
               name="answer-dark"
@@ -59,6 +59,7 @@
             <span>Important</span>
           </label>
         </div>
+        <span>{{ noteData.priority }}</span>
         <button type="button" class="nes-btn is-success" @click="getNoteData">
           Confirmer
         </button>
@@ -72,6 +73,7 @@
 
 <script>
 import { useNoteStore } from '@/stores/note.js';
+import { toRaw } from 'vue';
 export default {
   data() {
     return {
@@ -79,14 +81,15 @@ export default {
       noteData: {
         title: '',
         content: '',
-        priority: '',
+        priority: 'Normal',
       },
     };
   },
   methods: {
     getNoteData() {
+      console.log(this.noteData);
       const note = useNoteStore();
-      note.setNote(this.noteData);
+      note.setNote(toRaw(this.noteData));
       this.showModal = false;
     },
   },
