@@ -2,7 +2,7 @@
   <div class="note">
     <h2 class="note__title">Note</h2>
     <p>Ici vous pouvez créer des notes / mémos.</p>
-    <TestModal />
+    <note-add-modal />
     <div v-for="item in allNotes" :key="item.id">
       {{ item.title }}
     </div>
@@ -11,7 +11,7 @@
 
 <script>
 import { useNoteStore } from '@/stores/note.js';
-import TestModal from '../components/modals/TestModal.vue';
+import NoteAddModal from '../components/modals/NoteAddModal.vue';
 export default {
   setup() {
     const notesStore = useNoteStore();
@@ -23,7 +23,7 @@ export default {
     };
   },
   components: {
-    TestModal,
+    NoteAddModal,
   },
   methods: {
     async getNotes() {
@@ -32,7 +32,10 @@ export default {
       console.log(this.allNotes);
     },
   },
-  beforeMount() {
+  created() {
+    this.getNotes();
+  },
+  updated() {
     this.getNotes();
   },
 };

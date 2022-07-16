@@ -60,7 +60,12 @@
           </label>
         </div>
         <span>{{ noteData.priority }}</span>
-        <button type="button" class="nes-btn is-success" @click="getNoteData">
+        <button
+          type="button"
+          class="nes-btn is-success"
+          @click="getNoteData"
+          :disabled="noteData.title === '' || noteData.content === ''"
+        >
           Confirmer
         </button>
       </div>

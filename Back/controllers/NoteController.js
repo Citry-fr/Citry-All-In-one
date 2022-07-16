@@ -1,14 +1,16 @@
 import Note from '../models/NoteModel.js';
 
 const NoteController = {
-  createNote: (req, res) => {
+  createNote: async (req, res) => {
     const note = new Note({ ...req.body.data });
     console.log(req.body.data);
     console.log(note);
-    note
-      .save()
-      .then(() => res.send(note))
-      .catch((err) => res.status(400).send(err));
+    try {
+      await note.save();
+      res.send(note);
+    } catch (err) {
+      res.status(400).send(err);
+    }
   },
   deleteNote: (req, res) => {
     Note.findByIdAndDelete(req.params.id)
