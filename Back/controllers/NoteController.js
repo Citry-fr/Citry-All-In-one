@@ -2,7 +2,9 @@ import Note from '../models/NoteModel.js';
 
 const NoteController = {
   createNote: (req, res) => {
-    const note = new Note({ ...req.body });
+    const note = new Note({ ...req.body.data });
+    console.log(req.body.data);
+    console.log(note);
     note
       .save()
       .then(() => res.send(note))
