@@ -6,39 +6,31 @@
     <div v-for="item in allNotes" :key="item.id">
       {{ item.title }}
     </div>
+    <button @click="logNotes">Test</button>
   </div>
 </template>
 
-<script>
+<script setup>
 import { useNoteStore } from '@/stores/note.js';
 import NoteAddModal from '../components/modals/NoteAddModal.vue';
-export default {
-  setup() {
-    const notesStore = useNoteStore();
-    return { notesStore };
-  },
-  data() {
-    return {
-      allNotes: [],
-    };
-  },
-  components: {
-    NoteAddModal,
-  },
-  methods: {
-    async getNotes() {
-      await this.notesStore.getAllNotes();
-      this.allNotes = this.notesStore.notes;
-      console.log(this.allNotes);
-    },
-  },
-  created() {
-    this.getNotes();
-  },
-  updated() {
-    this.getNotes();
-  },
+import { ref, onMounted } from 'vue';
+
+const notesStore = useNoteStore();
+
+const allNotes = ref([]);
+
+const getNotes = async () => {
+  await notesStore.getAllNotes();
+  allNotes.value = notesStore.notes;
 };
+
+const logNotes = () => {
+  console.log(allNotes.value);
+};
+
+onMounted(() => {
+  getNotes();
+});
 </script>
 
 <style lang="scss" scoped>
