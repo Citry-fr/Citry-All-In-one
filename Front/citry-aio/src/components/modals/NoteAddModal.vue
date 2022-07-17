@@ -4,6 +4,7 @@
       class="modal"
       classes="modal-container"
       v-model="showModal"
+      @closed="emitConfirmed"
     >
       <div class="modal__content">
         <h3 class="modal__content__title">Créer une notes</h3>
@@ -76,28 +77,27 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { useNoteStore } from '@/stores/note.js';
-import { toRaw } from 'vue';
-export default {
-  data() {
-    return {
-      showModal: false,
-      noteData: {
-        title: '',
-        content: '',
-        priority: 'Normal',
-      },
-    };
-  },
-  methods: {
-    getNoteData() {
-      console.log(this.noteData);
-      const note = useNoteStore();
-      note.setNote(toRaw(this.noteData));
-      this.showModal = false;
-    },
-  },
+import { ref } from 'vue';
+
+const showModal = ref(false);
+const noteData = ref({
+  title: '',
+  content: '',
+  priority: 'Normal',
+});
+
+const emit = defineEmits(['confirmed']);
+
+const getNoteData = () => {
+  console.log(noteData.value);
+  const note = useNoteStore();
+  note.setNote(noteData.value);
+  showModal.value = false;
+};
+const emitConfirmed = () => {
+  emit('confirmed');
 };
 </script>
 

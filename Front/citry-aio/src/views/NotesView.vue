@@ -2,7 +2,7 @@
   <div class="note">
     <h2 class="note__title">Note</h2>
     <p>Ici vous pouvez créer des notes / mémos.</p>
-    <note-add-modal />
+    <note-add-modal @confirmed="getNotes" />
     <div v-for="item in allNotes" :key="item.id">
       {{ item.title }}
     </div>

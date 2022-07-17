@@ -15,7 +15,6 @@ export const useNoteStore = defineStore({
     async setNote(data) {
       await HttpRequestService.post('http://localhost:3001/api/notes/', data);
       await this.getAllNotes();
-      console.log(this.notes);
     },
     async getAllNotes() {
       let allNotes = await HttpRequestService.get(
