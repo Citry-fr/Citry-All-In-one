@@ -4,13 +4,15 @@
     <p>Ici vous pouvez créer des notes / mémos.</p>
     <note-add-modal @confirmed="getNotes" />
     <div class="note__container">
-      <note-component
-        :title="note.title"
-        :content="note.content"
-        :priority="note.priority"
-        v-for="note in allNotes"
-        :key="note.id"
-      ></note-component>
+      <div class="note__container__list">
+        <note-component
+          :title="note.title"
+          :content="note.content"
+          :priority="note.priority"
+          v-for="note in allNotes"
+          :key="note.id"
+        ></note-component>
+      </div>
     </div>
   </div>
 </template>
@@ -42,11 +44,16 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   &__container {
-    width: 100%;
+    margin-top: 20px;
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 10px;
+    justify-content: center;
+    &__list {
+      width: 95%;
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
   }
 }
 </style>
