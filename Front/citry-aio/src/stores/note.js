@@ -22,5 +22,8 @@ export const useNoteStore = defineStore({
       );
       this.notes = allNotes.data;
     },
+    async deleteNote(id) {
+      await HttpRequestService.delete(`http://localhost:3001/api/notes/${id}`);
+    },
   },
 });

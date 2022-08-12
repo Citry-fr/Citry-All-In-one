@@ -1,19 +1,43 @@
 <template>
-  <div class="noteComp">
+  <div
+    class="noteComp"
+    @mouseover="isHover = true"
+    @mouseleave="isHover = false"
+  >
     <h3 class="noteComp__title">{{ props.title }}</h3>
     <p class="noteComp__content">{{ props.content }}</p>
     <p class="noteComp__priority">{{ props.priority }}</p>
+    <div class="noteComp__buttons" v-if="isHover">
+      <button
+        type="button"
+        class="nes-btn is-primary noteComp__buttons__modify"
+        @click="emitModify"
+      >
+        Modify
+      </button>
+      <button
+        type="button"
+        class="nes-btn is-error noteComp__buttons__delete"
+        @click="emitDelete"
+      >
+        Delete
+      </button>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, ref } from 'vue';
 
 const props = defineProps({
   title: String,
   content: String,
   priority: String,
 });
+
+const emit = defineEmits(['modify', 'delete']);
+
+const isHover = ref();
 
 const prioColor = {
   Urgent: 'red',
@@ -23,6 +47,14 @@ const prioColor = {
 const getPrio = computed(() => {
   return prioColor[props.priority];
 });
+
+const emitModify = () => {
+  emit('modify');
+};
+
+const emitDelete = () => {
+  emit('delete');
+};
 
 onMounted(() => {
   console.log(prioColor[props.priority]);
@@ -34,6 +66,7 @@ onMounted(() => {
 @import '../../../node_modules/nes.css/css/nes.css';
 
 .noteComp {
+  position: relative;
   width: 300px;
   display: flex;
   flex-direction: column;
@@ -53,6 +86,21 @@ onMounted(() => {
   }
   &__priority {
     color: v-bind(getPrio);
+  }
+  &__buttons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    @include pixel-borders($corner-size: 1, $border-color: rgba(0, 0, 0, 0.2));
+    background-color: rgba(0, 0, 0, 0.5);
+    &__modify,
+    &__delete {
+      height: 40px;
+    }
   }
 }
 </style>

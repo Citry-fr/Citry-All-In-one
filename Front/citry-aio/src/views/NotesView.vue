@@ -10,7 +10,9 @@
           :content="note.content"
           :priority="note.priority"
           v-for="note in allNotes"
-          :key="note.id"
+          :key="note._id"
+          @modify="modifyNote"
+          @delete="deleteNote(note._id)"
         ></note-component>
       </div>
     </div>
@@ -26,10 +28,21 @@ import NoteComponent from '../components/notes/NoteComponent.vue';
 const notesStore = useNoteStore();
 
 const allNotes = ref([]);
+const isModify = ref();
 
 const getNotes = async () => {
   await notesStore.getAllNotes();
   allNotes.value = notesStore.notes;
+};
+
+const modifyNote = () => {
+  isModify.value = true;
+};
+
+const deleteNote = async (id) => {
+  console.log(id);
+  await notesStore.deleteNote(id);
+  getNotes();
 };
 
 onMounted(() => {

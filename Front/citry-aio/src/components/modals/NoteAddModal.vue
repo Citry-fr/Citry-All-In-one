@@ -35,18 +35,7 @@
               v-model="noteData.priority"
               checked
             />
-            <span>Normal</span>
-          </label>
-
-          <label class="modal__content__radio__choice">
-            <input
-              value="Urgent"
-              type="radio"
-              class="nes-radio is-dark"
-              name="answer-dark"
-              v-model="noteData.priority"
-            />
-            <span>Urgent</span>
+            <span class="modal__content__radio__choice__normal">Normal</span>
           </label>
 
           <label class="modal__content__radio__choice">
@@ -57,10 +46,23 @@
               name="answer-dark"
               v-model="noteData.priority"
             />
-            <span>Important</span>
+            <span class="modal__content__radio__choice__important"
+              >Important</span
+            >
+          </label>
+
+          <label class="modal__content__radio__choice">
+            <input
+              value="Urgent"
+              type="radio"
+              class="nes-radio is-dark"
+              name="answer-dark"
+              v-model="noteData.priority"
+            />
+            <span class="modal__content__radio__choice__urgent">Urgent</span>
           </label>
         </div>
-        <span>{{ noteData.priority }}</span>
+        <p class="modal__content__prio">{{ noteData.priority }}</p>
         <button
           type="button"
           class="nes-btn is-success"
@@ -79,13 +81,24 @@
 
 <script setup>
 import { useNoteStore } from '@/stores/note.js';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const showModal = ref(false);
 const noteData = ref({
   title: '',
   content: '',
   priority: 'Normal',
+});
+
+const prioColor = {
+  Urgent: 'red',
+  Important: 'yellow',
+  Normal: 'grey',
+};
+
+const getPrio = computed(() => {
+  console.log(prioColor[noteData.value.priority], noteData.value.priority);
+  return prioColor[noteData.value.priority];
 });
 
 const emit = defineEmits(['confirmed']);
@@ -136,7 +149,19 @@ const emitConfirmed = () => {
         justify-content: center;
         align-items: center;
         width: 170px;
+        &__normal {
+          color: gray !important;
+        }
+        &__important {
+          color: yellow !important;
+        }
+        &__urgent {
+          color: red !important;
+        }
       }
+    }
+    &__prio {
+      color: v-bind(getPrio) !important;
     }
   }
 }
