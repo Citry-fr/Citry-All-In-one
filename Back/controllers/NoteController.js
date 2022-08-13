@@ -37,6 +37,12 @@ const NoteController = {
       .then((notes) => res.send(notes))
       .catch((err) => res.status(400).send(err));
   },
+  modifyNote: (req, res) => {
+    console.log(req.body.data._value);
+    Note.findByIdAndUpdate(req.params.id, req.body.data._value)
+      .then((note) => res.send(note))
+      .catch((err) => res.status(400).send(err));
+  },
 };
 
 export default NoteController;

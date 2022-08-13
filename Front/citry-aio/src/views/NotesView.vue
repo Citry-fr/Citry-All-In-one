@@ -2,6 +2,7 @@
   <div class="note">
     <h2 class="note__title">Note</h2>
     <p>Ici vous pouvez créer des notes / mémos.</p>
+
     <note-add-modal @confirmed="getNotes" />
     <div class="note__container">
       <div class="note__container__list">
@@ -9,9 +10,10 @@
           :title="note.title"
           :content="note.content"
           :priority="note.priority"
+          :id="note._id"
+          :confirmed="getNotes"
           v-for="note in allNotes"
           :key="note._id"
-          @modify="modifyNote"
           @delete="deleteNote(note._id)"
         ></note-component>
       </div>
@@ -28,15 +30,10 @@ import NoteComponent from '../components/notes/NoteComponent.vue';
 const notesStore = useNoteStore();
 
 const allNotes = ref([]);
-const isModify = ref();
 
 const getNotes = async () => {
   await notesStore.getAllNotes();
   allNotes.value = notesStore.notes;
-};
-
-const modifyNote = () => {
-  isModify.value = true;
 };
 
 const deleteNote = async (id) => {

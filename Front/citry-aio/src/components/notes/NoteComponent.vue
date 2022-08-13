@@ -8,13 +8,13 @@
     <p class="noteComp__content">{{ props.content }}</p>
     <p class="noteComp__priority">{{ props.priority }}</p>
     <div class="noteComp__buttons" v-if="isHover">
-      <button
-        type="button"
-        class="nes-btn is-primary noteComp__buttons__modify"
-        @click="emitModify"
-      >
-        Modify
-      </button>
+      <note-modify-modal
+        :title="props.title"
+        :content="props.content"
+        :priority="props.priority"
+        :id="props.id"
+        @confirmed="props.confirmed"
+      ></note-modify-modal>
       <button
         type="button"
         class="nes-btn is-error noteComp__buttons__delete"
@@ -28,11 +28,13 @@
 
 <script setup>
 import { onMounted, computed, ref } from 'vue';
-
+import NoteModifyModal from '../modals/NoteModifyModal.vue';
 const props = defineProps({
   title: String,
   content: String,
   priority: String,
+  id: String,
+  confirmed: Function,
 });
 
 const emit = defineEmits(['modify', 'delete']);
@@ -47,11 +49,6 @@ const prioColor = {
 const getPrio = computed(() => {
   return prioColor[props.priority];
 });
-
-const emitModify = () => {
-  emit('modify');
-};
-
 const emitDelete = () => {
   emit('delete');
 };
