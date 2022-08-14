@@ -1,20 +1,20 @@
 <template>
   <div class="content">
     <h2 class="content__title">Home</h2>
-    <p>Bienvenue sur le site Citry All In One !</p>
+    <p>Welcome in the Citry All In One website !</p>
     <p>
-      Ce site comprend plusieurs petites applications que je vais coder les unes
-      après les autres.
+      This site includes several small applications that I will code some after
+      the others.
     </p>
-    <p>Voici les applications présentes sur le site:</p>
+    <p>Here are the apps on the site:</p>
     <ul class="nes-list">
       <li>Notes</li>
       <li>Counter</li>
       <li>Timer</li>
     </ul>
     <p>
-      J'ajouterais d'application au fur et à mesure, en attendant n'hésitez pas
-      à regarder mon LinkedIn et mon GitHub
+      I will add applications as I go along, in the meantime do not hesitate
+      looking at my LinkedIn and my GitHub
     </p>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
 .content {
   flex-direction: column;
   align-items: center;
-  padding: 0px 30px;
+  padding: 0px 150px;
   &__title {
     margin-top: 20px;
     margin-bottom: 30px;

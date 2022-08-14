@@ -1,7 +1,7 @@
 <template>
   <div class="note">
     <h2 class="note__title">Note</h2>
-    <p>Ici vous pouvez créer des notes / mémos.</p>
+    <p>Click on create note to start creating notes !</p>
 
     <note-add-modal @confirmed="getNotes" />
     <div class="note__container">

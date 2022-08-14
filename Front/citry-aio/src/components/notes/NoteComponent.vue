@@ -8,6 +8,7 @@
     <p class="noteComp__content">{{ props.content }}</p>
     <p class="noteComp__priority">{{ props.priority }}</p>
     <div class="noteComp__buttons" v-if="isHover">
+      <button type="button" class="nes-btn is-success">Open</button>
       <note-modify-modal
         :title="props.title"
         :content="props.content"
@@ -20,7 +21,7 @@
         class="nes-btn is-error noteComp__buttons__delete"
         @click="emitDelete"
       >
-        Delete
+        X
       </button>
     </div>
   </div>
@@ -76,6 +77,11 @@ onMounted(() => {
   &__title {
     margin: 0;
   }
+  &__content {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+  }
   &__content,
   &__priority {
     margin: 0;
@@ -88,9 +94,8 @@ onMounted(() => {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    gap: 10px;
     position: absolute;
     @include pixel-borders($corner-size: 1, $border-color: rgba(0, 0, 0, 0.2));
     background-color: rgba(0, 0, 0, 0.5);

@@ -15,6 +15,7 @@
             type="text"
             id="name_field"
             class="nes-input is-dark"
+            autocomplete="off"
           />
         </div>
         <div>
@@ -23,6 +24,7 @@
             v-model="noteData.content"
             id="textarea_field"
             class="nes-textarea is-dark"
+            autocomplete="off"
           ></textarea>
         </div>
         <div class="modal__content__radio">
@@ -65,16 +67,20 @@
         <p class="modal__content__prio">{{ noteData.priority }}</p>
         <button
           type="button"
-          class="nes-btn is-success"
+          class="nes-btn"
+          v-bind:class="{
+            'is-disabled': isFormFilled,
+            'is-success': !isFormFilled,
+          }"
           @click="getNoteData"
-          :disabled="noteData.title === '' || noteData.content === ''"
+          :disabled="isFormFilled"
         >
           Confirmer
         </button>
       </div>
     </vue-final-modal>
     <button type="button" class="nes-btn is-primary" @click="showModal = true">
-      Modify
+      Edit
     </button>
   </div>
 </template>
@@ -106,6 +112,10 @@ const prioColor = {
 const getPrio = computed(() => {
   console.log(prioColor[noteData.value.priority], noteData.value.priority);
   return prioColor[noteData.value.priority];
+});
+
+const isFormFilled = computed(() => {
+  return noteData.value.title === '' || noteData.value.content === '';
 });
 
 const emit = defineEmits(['confirmed']);
