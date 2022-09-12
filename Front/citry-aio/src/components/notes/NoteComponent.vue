@@ -4,16 +4,16 @@
     @mouseover="isHover = true"
     @mouseleave="isHover = false"
   >
-    <h3 class="noteComp__title">{{ props.title }}</h3>
-    <p class="noteComp__content">{{ props.content }}</p>
-    <p class="noteComp__priority">{{ props.priority }}</p>
+    <h3 class="noteComp__title">{{ props.notes.title }}</h3>
+    <p class="noteComp__content">{{ props.notes.content }}</p>
+    <p class="noteComp__priority">{{ props.notes.priority }}</p>
     <div class="noteComp__buttons" v-if="isHover">
       <button type="button" class="nes-btn is-success">Open</button>
       <note-modify-modal
-        :title="props.title"
-        :content="props.content"
-        :priority="props.priority"
-        :id="props.id"
+        :title="props.notes.title"
+        :content="props.notes.content"
+        :priority="props.notes.priority"
+        :id="props.notes.id"
         @confirmed="props.confirmed"
       ></note-modify-modal>
       <button
@@ -31,10 +31,7 @@
 import { onMounted, computed, ref } from 'vue';
 import NoteModifyModal from '../modals/NoteModifyModal.vue';
 const props = defineProps({
-  title: String,
-  content: String,
-  priority: String,
-  id: String,
+  notes: Object,
   confirmed: Function,
 });
 

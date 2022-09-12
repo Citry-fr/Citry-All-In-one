@@ -12,10 +12,7 @@
           :key="note._id"
         >
           <note-component
-            :title="note.title"
-            :content="note.content"
-            :priority="note.priority"
-            :id="note._id"
+            :notes="note"
             :confirmed="getNotes"
             @delete="deleteNote(note._id)"
           ></note-component>
