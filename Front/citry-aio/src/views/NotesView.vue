@@ -5,18 +5,22 @@
 
     <note-add-modal @confirmed="getNotes" />
     <div class="note__container">
-      <div class="note__container__list">
-        <note-component
-          :title="note.title"
-          :content="note.content"
-          :priority="note.priority"
-          :id="note._id"
-          :confirmed="getNotes"
+      <ul class="note__container__list">
+        <li
+          class="note__container__list__elem"
           v-for="note in allNotes"
           :key="note._id"
-          @delete="deleteNote(note._id)"
-        ></note-component>
-      </div>
+        >
+          <note-component
+            :title="note.title"
+            :content="note.content"
+            :priority="note.priority"
+            :id="note._id"
+            :confirmed="getNotes"
+            @delete="deleteNote(note._id)"
+          ></note-component>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -34,6 +38,7 @@ const allNotes = ref([]);
 const getNotes = async () => {
   await notesStore.getAllNotes();
   allNotes.value = notesStore.notes;
+  console.log(allNotes.value);
 };
 
 const deleteNote = async (id) => {
@@ -55,14 +60,16 @@ onMounted(() => {
   align-items: center;
   &__container {
     margin-top: 20px;
-    display: flex;
-    justify-content: center;
     &__list {
-      width: 95%;
+      float: left;
       display: flex;
       justify-content: flex-start;
+      justify-self: center;
       flex-wrap: wrap;
       gap: 20px;
+      &__elem {
+        list-style-type: none;
+      }
     }
   }
 }

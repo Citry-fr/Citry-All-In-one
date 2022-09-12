@@ -108,6 +108,13 @@ const getNoteData = () => {
   const note = useNoteStore();
   note.setNote(noteData.value);
   showModal.value = false;
+  clearInput();
+};
+
+const clearInput = () => {
+  noteData.value.title = '';
+  noteData.value.content = '';
+  noteData.value.priority = 'Normal';
 };
 const emitConfirmed = () => {
   emit('confirmed');

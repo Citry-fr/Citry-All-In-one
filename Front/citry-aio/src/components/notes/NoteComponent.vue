@@ -80,7 +80,7 @@ onMounted(() => {
   &__content {
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 100%;
+    max-width: 100%;
   }
   &__content,
   &__priority {

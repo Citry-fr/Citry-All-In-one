@@ -121,9 +121,8 @@ const isFormFilled = computed(() => {
 const emit = defineEmits(['confirmed']);
 
 const getNoteData = () => {
-  console.log(noteData.value);
   const note = useNoteStore();
-  note.modifyNote(props.id, noteData);
+  note.modifyNote(props.id, noteData.value);
   showModal.value = false;
 };
 const emitConfirmed = () => {
